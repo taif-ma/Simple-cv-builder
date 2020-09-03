@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}<title>EZResume | My cv</title>{% endblock %}
+{% block content %}
+    <div class="wrapper">
+    {% for cv in cvs %}
+       <div class="resume-box">
+            <div class="container">
+                <h5 class="resume-name">{{ cv.name }}</h5>
+
+                {% if cv.template%}
+                <div class="preview-resume"><iframe src="/dashboard/resume-preview/{{cv.id}}" class="iframe-preview"></iframe></div>
+                {% endif %}
+                <p><strong>Created:</strong> {{ cv.created_at | date:"SHORT_DATE_FORMAT" }} {{ cv.created_at|time:"H:i" }} </p>
+                {% if cv.updated_at %}
+                <p><strong>Updated:</strong> {{ cv.updated_at | date:"SHORT_DATE_FORMAT" }} {{ cv.updated_at|time:"H:i" }} </p>
+                {% endif %}
+                
+                
+
+
+
+
+
+
+
+            </div>
+        </div>
+    {% empty %}
+        <div class="empty-state-box">
+            <img src="{% static 'cv/images/resume-empty-icon.png' %}" class="centered">
+            <p class="empty-state-text"><b>You don't have any cv yet</b><br>Create one and
+                start building your very first CV</p>
+        </div>
+    {% endfor %}
+        <div class="button-box">
+            <a href="{% url 'cv:create-cv' %}" class="button">Create a CV</a>
+        </div>
+    </div>
+{% endblock %}

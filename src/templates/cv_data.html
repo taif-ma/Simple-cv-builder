@@ -1,0 +1,377 @@
+{% extends 'index.html' %}
+{% load i18n %}
+{% load static %}
+{% block style%}
+<style>
+
+ul#id_cvs-sections li {
+    list-style: none;
+    width: calc(20% - 20px);
+    height: 100px;
+    margin: 5px;
+    float: left;
+    
+}
+ul#id_cvs-sections {
+    width: 100%;
+    float:left;
+}
+ul#id_cvs-sections li label{
+
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    border-radius: 7px;
+    background:#8282927a;
+}
+.cv-form-row p {
+    width: 100%;
+    float: left;
+}
+.form-row p input {
+    width: 70%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #f7ecf0;
+}
+.form-row p  {
+    width: 50%;
+    margin: 50px auto;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.form-row p label  {
+    display:none;
+}
+.tooltip {
+    padding: 20px;
+    opacity: 1;
+}
+input[type=radio] {
+        display: none;
+    }
+
+label[for="id_cvs-sections_0"]:before {
+    
+    content: "\f0b1";
+    font-family: FontAwesome;
+    font-size: 50px;
+    margin: 20px -20px;
+    position: absolute; 
+}
+
+label[for="id_cvs-sections_1"]  {
+    background-image: url("{% static 'resumes/images/new-york-resume-small.jpg' %}");
+    
+}
+label[for="id_cvs-sections_1"]:checked+label {
+    border: deeppink solid 4px;   
+}
+input#id_cvs-sections_1[type=checkbox]:checked+label {
+    border: deeppink solid 4px;
+}
+
+label[for="id_cvs-sections_2"]  {
+    background-image: url("{% static 'resumes/images/new-york-resume-small.jpg' %}");
+    
+    
+}
+label[for="id_cvs-sections_3"]  {
+    background-image: url("{% static 'resumes/images/new-york-resume-small.jpg' %}");
+    
+}
+label[for="id_cvs-sections_4"]  {
+    background-image: url("{% static 'resumes/images/new-york-resume-small.jpg' %}");
+    
+}
+label[for="id_cvs-sections_5"]  {
+    background-image: url("{% static 'resumes/images/new-york-resume-small.jpg' %}");
+    
+}
+label[for="id_cvs-sections_6"]:before  {
+    content: "\f0b1";
+    font-family: "Fontawesome";
+    
+}
+label[for="id_cvs-sections_7"]  {
+    background-image: url("{% static 'resumes/images/new-york-resume-small.jpg' %}");
+    
+    
+}
+label[for="id_cvs-sections_8"]  {
+    background-image: url("{% static 'resumes/images/new-york-resume-small.jpg' %}");
+    
+}
+label[for="id_cvs-sections_9"]  {
+    background-image: url("{% static 'resumes/images/new-york-resume-small.jpg' %}");
+    
+}
+label[for="id_cvs-sections_10"]  {
+    background-image: url("{% static 'resumes/images/new-york-resume-small.jpg' %}");
+}
+
+label[for="id_resumes-template_3"]  {
+    background-image: url("{% static 'resumes/images/tokyo-resume-small.jpg' %}");
+    border: lightslategray solid 1px;
+    height: 253px;
+    width: 223px;
+    display: inline-block;
+    margin: 1.5em;
+}
+
+label[for="id_resumes-template_4"]  {
+    background-image: url("{% static 'resumes/images/rome-resume-small.jpg' %}");
+    border: lightslategray solid 1px;
+    height: 253px;
+    width: 223px;
+    display: inline-block;
+    margin: 1.5em;
+}
+
+label[for="id_resumes-template_5"] {
+    background-image: url("{% static 'resumes/images/sf-resume-small.jpg' %}");
+    border: lightslategray solid 1px;
+    height: 253px;
+    width: 223px;
+    display: inline-block;
+    margin: 1.5em;
+}
+
+label[for="id_resumes-template_1"]:checked+label {
+    border: deeppink solid 4px;
+    height: 253px;
+    width: 223px;
+    display: inline-block;
+    margin: 1.5em;
+}
+
+input#id_resume_template_1[type=radio]:checked+label {
+    border: deeppink solid 4px;
+    height: 253px;
+    width: 223px;
+    display: inline-block;
+    margin: 1.5em;
+}
+
+input#id_resume_template_2[type=radio]:checked+label {
+    border: deeppink solid 4px;
+    height: 253px;
+    width: 223px;
+    display: inline-block;
+    margin: 1.5em;
+}
+
+input#id_resume_template_3[type=radio]:checked+label {
+    border: deeppink solid 4px;
+    height: 253px;
+    width: 223px;
+    display: inline-block;
+    margin: 1.5em;
+}
+
+input#id_resume_template_4[type=radio]:checked+label {
+    border: deeppink solid 4px;
+    height: 253px;
+    width: 223px;
+    display: inline-block;
+    margin: 1.5em;
+}
+</style>
+
+
+{% endblock %}
+{% block title %}<title>Resume Name</title>{% endblock %}
+
+{% block content %}
+
+
+
+   
+    <form action="" method="POST">{% csrf_token %}
+    
+<div class="container cv" style="max-width:100%;">
+    <div class="row cv">
+        <div class="col-1 menu-cv" style="background:#d37f91;">
+        <div class="cv-menu-icons">
+            <i class="fa fa-file" aria-hidden="true"></i>
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <i class="fa fa-save" aria-hidden="true"></i>
+        </div>    
+        </div>
+        <div class="col-2 sections-cv" style="background:#818192;">
+        <div class="cv-sections">                     
+        <form action="" method="POST">{% csrf_token %}
+        {{ wizard.management_form }}
+        <div class="cv-sections-buttons">
+            <ul>
+                <!-- <li><button name="wizard_goto_step" type="submit" value="resumes" class="active"><i class="fa fa-info-circle" aria-hidden="true"></i> Resume</button></li> -->
+                {% if 'work_experience' in cv.sections %}
+                <li><button name="wizard_goto_step" type="submit" value="work_experience"> <i class="fa fa-briefcase" aria-hidden="true"></i> Experience</button></li>                
+                {% endif %}
+                {% if 'education' in cv.sections %}
+                <li><button name="wizard_goto_step" type="submit" value="education"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Education</button></li>
+                {% endif %}
+                {% if 'certifications' in cv.sections %}
+                <li><button name="wizard_goto_step" type="submit" value="certifications"><i class="fa fa-certificate" aria-hidden="true"></i> Certifications</button></li>
+                {% endif %}
+                {% if 'projects' in cv.sections %}
+                <li><button name="wizard_goto_step" type="submit" value="projects"><i class="fa fa-tasks" aria-hidden="true"></i> Projects</button></li>
+                {% endif %}
+                {% if 'skills' in cv.sections %}
+                <li><button name="wizard_goto_step" type="submit" value="skills"><i class="fa fa-star" aria-hidden="true"></i>  Skills</button></li>
+                {% endif %}
+                {% if 'languages' in cv.sections %}
+                <li><button name="wizard_goto_step" type="submit" value="languages"><i class="fa fa-language" aria-hidden="true"></i> Languages</button></li>
+                {% endif %}
+                {% if 'publications' in cv.sections %}
+                <li><button name="wizard_goto_step" type="submit" value="publications"><i class="fa fa-star" aria-hidden="true"></i>  Publications</button></li>
+                {% endif %}
+                {% if 'hobbies' in cv.sections %}
+                <li><button name="wizard_goto_step" type="submit" value="hobbies"><i class="fa fa-language" aria-hidden="true"></i> Hobbies</button></li>
+                {% endif %}
+                {% if 'courses' in cv.sections %}
+                <li><button name="wizard_goto_step" type="submit" value="courses"><i class="fa fa-language" aria-hidden="true"></i> Courses</button></li>
+                {% endif %}
+                
+                <li><button name="success"><i class="fa fa-check" aria-hidden="true"></i> Done</button></li>
+                
+            </ul>
+        </div>
+    </form>
+        </div>
+        
+        </div>
+        <div class="col-9 data" style="display:flex;">
+             <div class="data-cv">
+                    <!--Accordion wrapper-->
+                <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+
+                <!-- Accordion card -->
+                <div class="card">
+
+                    <!-- Card header -->
+                    <div class="card-header" role="tab" id="headingOne1">
+                    <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
+                        aria-controls="collapseOne1">
+                        <h5 class="mb-0">
+                        Education<i class="fa fa-angle-down rotate-icon"></i>
+                        </h5>
+                    </a>
+                    </div>
+
+                    <!-- Card body -->
+                    <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx">
+                    <div class="card-body">
+                        {{education}}
+                    </div>
+                    </div>
+
+                </div>
+                <!-- Accordion card -->
+
+                <!-- Accordion card -->
+                <div class="card">
+
+                    <!-- Card header -->
+                    <div class="card-header" role="tab" id="headingTwo2">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
+                        aria-expanded="false" aria-controls="collapseTwo2">
+                        <h5 class="mb-0">
+                        Experience<i class="fa fa-angle-down rotate-icon"></i>
+                        </h5>
+                    </a>
+                    </div>
+
+                    <!-- Card body -->
+                    <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2" data-parent="#accordionEx">
+                    <div class="card-body">
+                        {{experience}}
+                    </div>
+                    </div>
+
+                </div>
+                <!-- Accordion card -->
+
+                <!-- Accordion card -->
+                <div class="card">
+
+                    <!-- Card header -->
+                    <div class="card-header" role="tab" id="headingThree3">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
+                        aria-expanded="false" aria-controls="collapseThree3">
+                        <h5 class="mb-0">
+                        Skills<i class="fa fa-angle-down rotate-icon"></i>
+                        </h5>
+                    </a>
+                    </div>
+
+                    <!-- Card body -->
+                    <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3" data-parent="#accordionEx">
+                    <div class="card-body">
+                        {{skills}}
+                    </div>
+                    </div>
+
+                </div>
+                <!-- Accordion card -->
+                 <!-- Accordion card -->
+                <div class="card">
+
+                    <!-- Card header -->
+                    <div class="card-header" role="tab" id="headingThree4">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree4"
+                        aria-expanded="false" aria-controls="collapseThree4">
+                        <h5 class="mb-0">
+                        Languages<i class="fa fa-angle-down rotate-icon"></i>
+                        </h5>
+                    </a>
+                    </div>
+
+                    <!-- Card body -->
+                    <div id="collapseThree4" class="collapse" role="tabpanel" aria-labelledby="headingThree4" data-parent="#accordionEx">
+                    <div class="card-body">
+                        {{languages}}
+                    </div>
+                    </div>
+
+                </div>
+                <!-- Accordion card -->
+                 <!-- Accordion card -->
+                <div class="card">
+
+                    <!-- Card header -->
+                    <div class="card-header" role="tab" id="headingThree5">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree5"
+                        aria-expanded="false" aria-controls="collapseThree5">
+                        <h5 class="mb-0">
+                        Skills<i class="fa fa-angle-down rotate-icon"></i>
+                        </h5>
+                    </a>
+                    </div>
+
+                    <!-- Card body -->
+                    <div id="collapseThree5" class="collapse" role="tabpanel" aria-labelledby="headingThree5" data-parent="#accordionEx">
+                    <div class="card-body">
+                        {{skills}}
+                    </div>
+                    </div>
+
+                </div>
+                <!-- Accordion card -->
+
+                </div>
+                <!-- Accordion wrapper -->
+                
+            </div>
+            <div class="preview-cv">
+                <div class="display-cv">
+                <iframe src="/dashboard/cv/cv-preview/{{cv.id}}" class="cv-iframe-preview"></iframe></div>
+            </div>
+           
+        </div>
+        
+    </div>
+</div>
+    
+    </form>
+{% endblock %}
