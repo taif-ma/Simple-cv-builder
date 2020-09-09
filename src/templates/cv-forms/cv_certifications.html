@@ -245,133 +245,50 @@ input#id_resume_template_4[type=radio]:checked+label {
         
         </div>
         <div class="col-9 data" style="display:flex;">
-             <div class="data-cv">
-                    <!--Accordion wrapper-->
-                <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+            <div class="data-cv">
+            <h2>Certifications</h2>
+            {{certification_formset.management_form}}
 
-                <!-- Accordion card -->
-                <div class="card">
+               {%for form in certification_formset%}
+               <div class="cv-form-row form-duplicate">
+                   <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">      
+                       <div class="card">
+                           <div class="card-header" role="tab" id="heading{{forloop.counter}}">
+                           <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapse{{forloop.counter}}"
+                               aria-expanded="false" aria-controls="collapse{{forloop.counter}}">
+                               <h5 class="mb-0">
+                               Certification
+                                <i class="fa fa-angle-down rotate-icon"></i>
+                               </h5>
+                           </a>
+                           </div>
 
-                    <!-- Card header -->
-                    <div class="card-header" role="tab" id="headingOne1">
-                    <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
-                        aria-controls="collapseOne1">
-                        <h5 class="mb-0">
-                        Education<i class="fa fa-angle-down rotate-icon"></i>
-                        </h5>
-                    </a>
-                    </div>
+                           <div id="collapse{{forloop.counter}}" class="collapse" role="tabpanel" aria-labelledby="heading{{forloop.counter}}" data-parent="#accordionEx">
+                           <div class="card-body cv">
+                               
+                               {{form.as_p}}
+                           </div>
+                           </div>
 
-                    <!-- Card body -->
-                    <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx">
-                    <div class="card-body">
-                        {{education}}
-                    </div>
-                    </div>
-
-                </div>
-                <!-- Accordion card -->
-
-                <!-- Accordion card -->
-                <div class="card">
-
-                    <!-- Card header -->
-                    <div class="card-header" role="tab" id="headingTwo2">
-                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
-                        aria-expanded="false" aria-controls="collapseTwo2">
-                        <h5 class="mb-0">
-                        Experience<i class="fa fa-angle-down rotate-icon"></i>
-                        </h5>
-                    </a>
-                    </div>
-
-                    <!-- Card body -->
-                    <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2" data-parent="#accordionEx">
-                    <div class="card-body">
-                        {{experience}}
-                    </div>
-                    </div>
-
-                </div>
-                <!-- Accordion card -->
-
-                <!-- Accordion card -->
-                <div class="card">
-
-                    <!-- Card header -->
-                    <div class="card-header" role="tab" id="headingThree3">
-                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
-                        aria-expanded="false" aria-controls="collapseThree3">
-                        <h5 class="mb-0">
-                        Skills<i class="fa fa-angle-down rotate-icon"></i>
-                        </h5>
-                    </a>
-                    </div>
-
-                    <!-- Card body -->
-                    <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3" data-parent="#accordionEx">
-                    <div class="card-body">
-                        {{skills}}
-                    </div>
-                    </div>
-
-                </div>
-                <!-- Accordion card -->
-                 <!-- Accordion card -->
-                <div class="card">
-
-                    <!-- Card header -->
-                    <div class="card-header" role="tab" id="headingThree4">
-                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree4"
-                        aria-expanded="false" aria-controls="collapseThree4">
-                        <h5 class="mb-0">
-                        Languages<i class="fa fa-angle-down rotate-icon"></i>
-                        </h5>
-                    </a>
-                    </div>
-
-                    <!-- Card body -->
-                    <div id="collapseThree4" class="collapse" role="tabpanel" aria-labelledby="headingThree4" data-parent="#accordionEx">
-                    <div class="card-body">
-                        {{languages}}
-                    </div>
-                    </div>
-
-                </div>
-                <!-- Accordion card -->
-                 <!-- Accordion card -->
-                <div class="card">
-
-                    <!-- Card header -->
-                    <div class="card-header" role="tab" id="headingThree5">
-                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree5"
-                        aria-expanded="false" aria-controls="collapseThree5">
-                        <h5 class="mb-0">
-                        Skills<i class="fa fa-angle-down rotate-icon"></i>
-                        </h5>
-                    </a>
-                    </div>
-
-                    <!-- Card body -->
-                    <div id="collapseThree5" class="collapse" role="tabpanel" aria-labelledby="headingThree5" data-parent="#accordionEx">
-                    <div class="card-body">
-                        {{skills}}
-                    </div>
-                    </div>
-
-                </div>
-                <!-- Accordion card -->
-
-                </div>
-                <!-- Accordion wrapper -->
-                
-            </div>
-            <div class="preview-cv">
-                <div class="display-cv">
-                <iframe src="/dashboard/cv/cv-preview/{{cv.id}}" class="cv-iframe-preview"></iframe></div>
-            </div>
+                       </div>
+                   </div>
+                   
+               </div>
+                {% endfor %}
+               
+               <button type="submit" class="button-next">Next</button>
+           </div>
+           <div class="preview-cv">
+               <iframe data-enlargeable src="/cv/cv-preview/{{cv.id}}" class="cv-iframe" style="border:0 #fffff none;" scrolling="no" frameborder="1" marginhright="0px" marginwidth="0px" height="100%" width="100%" allowfullscreen></iframe>
+               <span >Preview</span>
+           </div>
            
-        </div>
+           <!-- <div class="preview-cv">
+               <div class="display-cv">
+               <iframe src="/dashboard/cv/cv-preview/{{cv.id}}" class="cv-iframe-preview"></iframe></div>
+           </div> -->
+          
+       </div>
         
     </div>
 </div>
