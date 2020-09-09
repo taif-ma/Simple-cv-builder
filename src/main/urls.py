@@ -16,7 +16,7 @@ urlpatterns = [
     path('add-education/<int:pk>/', views.education, name='education'), 
     
     
-    #path('add-certifications/<int:pk>/', views.certifications, name='certifications'), 
+    path('add-certifications/<int:pk>/', views.certifications, name='certifications'), 
     #path('add-skills/<int:pk>/', views.skills, name='skills'), 
     #path('add-languages/<int:pk>/', views.languages, name='languages'), 
     #path('add-projects/<int:pk>/', views.projects, name='projects'), 
