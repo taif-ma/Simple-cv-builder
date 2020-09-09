@@ -24,6 +24,7 @@ urlpatterns = [
     #path('add-courses/<int:pk>/', views.courses, name='courses'), 
     #path('add-publications/<int:pk>/', views.publications, name='publications'), 
     #path('add-custom-section/<int:pk>/', views.custom_section, name='custom_section'), 
+    path('cv-done/<int:pk>/', views.cv_done, name='cv_done'),
 
     
     

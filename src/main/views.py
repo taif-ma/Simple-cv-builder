@@ -141,8 +141,8 @@ def education(request,pk):
         
             if sections.index('education') == sections_len:
                 print('the list is not end')
-                return HttpResponseRedirect(reverse('cv:my-cvs'))
-                
+                return HttpResponseRedirect(reverse('cv:cv-done', kwargs={'pk':pk}))
+
             
             else:
                 print('the list is end')
@@ -180,19 +180,26 @@ def certifications(request,pk):
             
         
             if sections.index('certifications') == sections_len:
-                #print('the list is not end')
-                section = sections[sections.index('sertifications') + 1]
-                return HttpResponseRedirect(reverse('cv:%s' % section, kwargs={'pk':pk}))
+                
+                return HttpResponseRedirect(reverse('cv:cv-done', kwargs={'pk':pk}))
+
             
             else:
-                #print('the list is end')
-                return HttpResponseRedirect(reverse('cv:my-cvs'))
+                
+                section = sections[sections.index('certifications') + 1]
+                return HttpResponseRedirect(reverse('cv:%s' % section, kwargs={'pk':pk}))
 
     else:
         certification_formset = CertificationFormSet(initial=objs)
 
     return render(request,'cv-forms/cv_certifications.html',{'certification_formset':certification_formset, 'user':user, 'cv': cv})
 
+
+@login_required()
+def cv_done(request,pk):
+    user = request.user
+    cv = Cv.objects.get(pk=pk)
+    return render(request,'cv-forms/cv_done.html', {'user':user, 'cv':cv})
 
 
 @login_required()
