@@ -1650,6 +1650,7 @@ iframe.cv-iframe {
 
 .done-download-button.pdf {
     background: #891c1cc4;
+    margin-top: 10px;
 }
 .done-download-button.pdf i{
     color: #ffffff99;
@@ -1668,4 +1669,35 @@ iframe.cv-iframe {
 }
 .done-download-button i {
     font-size: 18px;
+}
+
+
+.done-download-button.google {
+    background: #4c9d61;
+}
+.done-download-button.drop {
+    background: #0179de;
+}
+
+.done-download-button.email {
+    background:#00bcd49c;
+}
+
+.done-download-button.email i {
+    color: #ffffff99;
+    font-size: 28px;
+    float: left;
+    margin-top: -5px;
+}
+.done-download-button.drop i {
+    color: #ffffff99;
+    font-size: 28px;
+    float: left;
+    margin-top: -5px;
+}
+.done-download-button.google i {
+    color: #ffffff99;
+    font-size: 28px;
+    float: left;
+    margin-top: -5px;
 }

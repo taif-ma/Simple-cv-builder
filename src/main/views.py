@@ -181,7 +181,7 @@ def certifications(request,pk):
         
             if sections.index('certifications') == sections_len:
                 
-                return HttpResponseRedirect(reverse('cv:cv-done', kwargs={'pk':pk}))
+                return HttpResponseRedirect(reverse('cv:cv_done', kwargs={'pk':pk}))
 
             
             else:
