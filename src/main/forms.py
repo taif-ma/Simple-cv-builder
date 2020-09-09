@@ -88,8 +88,21 @@ class CertificationForm(ModelForm):
         labels = {'name': 'Certification', 'provider': 'Provider', 'date_obtained': 'When'}
 
 
-CertificationFormSet = modelformset_factory(Certification, form=CertificationForm, formset=MyModelFormSet, max_num=15)
+    def save(self, commit=False, *args, **kwargs):
+        m = super(CertificationForm, self).save(commit=False, *args, **kwargs)
 
+        if not m.id:
+            cer = CertificationForm()
+        else:
+            cer = Certification.objects.get(pk=m.id)
+
+        cer.name = m.name
+        cer.provider = m.provider
+        cer.date_obtained = m.date_obtained
+        cer.city = m.city
+        cer.cv = m.cv
+        cer.save()
+        
 
 class EducationForm(ModelForm):
     id = forms.CharField(label='Id', max_length=100, required=False)
