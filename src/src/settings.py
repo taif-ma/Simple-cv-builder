@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     
     'main',
-    'formtools',
+    
     'tinymce',
     'users',
     'multiselectfield',
