@@ -92,7 +92,7 @@ class CertificationForm(ModelForm):
         m = super(CertificationForm, self).save(commit=False, *args, **kwargs)
 
         if not m.id:
-            cer = CertificationForm()
+            cer = Certification()
         else:
             cer = Certification.objects.get(pk=m.id)
 

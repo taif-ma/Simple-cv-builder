@@ -1624,3 +1624,48 @@ iframe.cv-iframe {
 .header-user-info {
     display: unset !important;
 }
+
+
+.congrats i {
+    background: #d07c8e;
+    color: #818191;
+    font-size: 30px;
+    padding: 20px;
+    border-radius: 100%;
+    opacity: 0.8;
+}
+.congrats h4 {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.done-download-button {
+    padding: 15px;
+    width: 70%;
+    margin: 10px auto;
+    border-radius: 10px;
+    color: #ffffff99;
+}
+
+.done-download-button.pdf {
+    background: #891c1cc4;
+}
+.done-download-button.pdf i{
+    color: #ffffff99;
+    font-size: 28px;
+    float: left;
+    margin-top: -5px;
+}
+.done-download-button.docx i {
+    color: #ffffff99;
+    font-size: 28px;
+    float: left;
+    margin-top: -5px;
+}
+.done-download-button.docx {
+    background: #122ec7bd;
+}
+.done-download-button i {
+    font-size: 18px;
+}
