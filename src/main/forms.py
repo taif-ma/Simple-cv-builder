@@ -39,6 +39,7 @@ class CvForm(ModelForm):
 
 
 class WorkExperienceForm(ModelForm):
+    id = forms.CharField(label='Id', max_length=100, required=False)
     start_date = DateField(required=False, input_formats=settings.DATE_INPUT_FORMATS,
                            widget=DateInput(format='%d/%m/%Y', attrs={'class': 'date-picker', 'placeholder': 'DD/MM/YYYY'}))
     end_date = DateField(required=False, input_formats=settings.DATE_INPUT_FORMATS,
@@ -46,17 +47,32 @@ class WorkExperienceForm(ModelForm):
     
     class Meta:
         model = WorkExperience
-        fields = ['position', 'company', 'city', 'start_date', 'end_date', 'achievements', 'cv', ]
+        fields = ['position', 'company', 'city', 'start_date', 'end_date', 'achievements', 'cv', 'id']
         widgets = {'achievements': TinyMCE(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}),
                    'position': TextInput(attrs={'placeholder': 'For example: Bank Teller'}),
                    'company': TextInput(attrs={'placeholder': 'For example: Bank Central Eurpe'}),
                    'city': TextInput(attrs={'placeholder': 'For example: Jakarta'}),
-                   'cv': forms.HiddenInput(), }
+                   #'cv': forms.HiddenInput(),
+                   'id': forms.HiddenInput(),
+                   }
         labels = {'achievements': 'Description'}
 
-WorkExperienceFormSet = modelformset_factory(WorkExperience, form=WorkExperienceForm, formset=MyModelFormSet, extra=1,
-                                             max_num=10)
+    def save(self, commit=False, *args, **kwargs):
+        m = super(WorkExperienceForm, self).save(commit=False, *args, **kwargs)
 
+        if not m.id:
+            ex = WorkExperience()
+        else:
+            ex = WorkExperience.objects.get(pk=m.id)
+
+        ex.position = m.position
+        ex.achievements = m.achievements
+        ex.city = m.city
+        ex.company = m.company
+        ex.start_date = m.start_date
+        ex.end_date = m.end_date
+        ex.cv = m.cv
+        ex.save()
 
 class CertificationForm(ModelForm):
     date_obtained = DateField(required=False, input_formats=settings.DATE_INPUT_FORMATS,
@@ -76,6 +92,7 @@ CertificationFormSet = modelformset_factory(Certification, form=CertificationFor
 
 
 class EducationForm(ModelForm):
+    id = forms.CharField(label='Id', max_length=100, required=False)
     start_date = DateField(required=False, input_formats=settings.DATE_INPUT_FORMATS,
                            widget=DateInput(format='%d/%m/%Y', attrs={'class': 'date-picker', 'placeholder': 'DD/MM/YYYY'}))
     end_date = DateField(required=False, input_formats=settings.DATE_INPUT_FORMATS,
@@ -83,19 +100,35 @@ class EducationForm(ModelForm):
 
     class Meta:
         model = Education
-        fields = ['school', 'department','degree', 'major', 'country', 'city', 'start_date', 'end_date', 'description','cv', ]
+        fields = ['school', 'department','degree', 'major', 'country', 'city', 'start_date', 'end_date', 'description', 'cv', 'id' ]
         widgets = {'school': TextInput(attrs={'placeholder': 'For example: University of San Francisco'}),
                     'department': TextInput(attrs={'placeholder': 'For example: Computer Science'}),
                    'degree': TextInput(attrs={'placeholder': 'For example: Bachelor of Science'}),
                    'major': TextInput(attrs={'placeholder': 'For example: Economics'}),
                    'city': TextInput(attrs={'placeholder': 'For example: San Francisco'}),
-                   'achievements': TinyMCE(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}),
-                   'cv': forms.HiddenInput(), }
+                   'description': TinyMCE(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}),
+                   #'cv': forms.HiddenInput(),
+                    }
         labels = {'school': 'Institution', 'major':'Speciality' }
 
+    def save(self, commit=False, *args, **kwargs):
+        m = super(EducationForm, self).save(commit=False, *args, **kwargs)
 
-EducationFormSet = modelformset_factory(Education, form=EducationForm, formset=MyModelFormSet, max_num=10)
+        if not m.id:
+            ed = EducationForm()
+        else:
+            ed = Education.objects.get(pk=m.id)
 
+        ed.school = m.school
+        ed.department = m.department
+        ed.degree = m.degree
+        ed.major = m.major
+        ed.city = m.city
+        ed.description = m.description
+        ed.start_date = m.start_date
+        ed.end_date = m.end_date
+        ed.cv = m.cv
+        ed.save()
 
 class SkillForm(ModelForm):
     def clean(self):
