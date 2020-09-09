@@ -7,6 +7,6 @@ local_settings.py
 db.sqlite3
 media
 ### macOS ###
-*.DS_Store
+.DS_Store
 .AppleDouble
 .LSOverride
