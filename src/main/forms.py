@@ -128,7 +128,7 @@ class EducationForm(ModelForm):
         m = super(EducationForm, self).save(commit=False, *args, **kwargs)
 
         if not m.id:
-            ed = EducationForm()
+            ed = Education()
         else:
             ed = Education.objects.get(pk=m.id)
 

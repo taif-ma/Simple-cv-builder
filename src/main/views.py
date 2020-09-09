@@ -141,12 +141,13 @@ def education(request,pk):
         
             if sections.index('education') == sections_len:
                 print('the list is not end')
-                section = sections[sections.index('education') + 1]
-                return HttpResponseRedirect(reverse('cv:%s' % section, kwargs={'pk':pk}))
+                return HttpResponseRedirect(reverse('cv:my-cvs'))
+                
             
             else:
                 print('the list is end')
-                return HttpResponseRedirect(reverse('cv:my-cvs'))
+                section = sections[sections.index('education') + 1]
+                return HttpResponseRedirect(reverse('cv:%s' % section, kwargs={'pk':pk}))
 
     else:
         education_formset = EducationFormSet(initial=objs)
