@@ -55,7 +55,7 @@ class WorkExperienceForm(ModelForm):
     
     class Meta:
         model = WorkExperience
-        fields = ['position', 'company', 'city', 'start_date', 'end_date', 'achievements', 'cv', 'id']
+        fields = ['position', 'company', 'city', 'start_date', 'end_date', 'achievements', 'id']
         widgets = {'achievements': TinyMCE(attrs={'class': 'objective-box', 'cols': 50, 'rows': 10}),
                    'position': TextInput(attrs={'placeholder': 'For example: Bank Teller'}),
                    'company': TextInput(attrs={'placeholder': 'For example: Bank Central Eurpe'}),
@@ -65,13 +65,14 @@ class WorkExperienceForm(ModelForm):
                    }
         labels = {'achievements': 'Description'}
 
-    def save(self, commit=False, *args, **kwargs):
+    def save(self, cv, commit=False, *args, **kwargs):
         m = super(WorkExperienceForm, self).save(commit=False, *args, **kwargs)
-
-        if not self.cleaned_data['id']:
+        # import pdb; pdb.set_trace()
+        try:
+            id = self.cleaned_data['id']
+            ex = WorkExperience.objects.get(pk=id)
+        except:
             ex = WorkExperience()
-        else:
-            ex = WorkExperience.objects.get(pk=m.self.cleaned_data['id'])
 
         ex.position = m.position
         ex.achievements = m.achievements
@@ -79,7 +80,7 @@ class WorkExperienceForm(ModelForm):
         ex.company = m.company
         ex.start_date = m.start_date
         ex.end_date = m.end_date
-        ex.cv = m.cv
+        ex.cv = cv
         ex.save()
 
     """ def as_myp(self):

@@ -68,20 +68,19 @@ def work_experience(request,pk):
     objs = []
     for exp in WorkExperience.objects.filter(cv=cv):
         objs.append({'cv': exp.cv, 'position': exp.position, 'company': exp.company, 'achievements': exp.achievements, 'city': exp.city, 'start_date': exp.start_date, 'end_date': exp.end_date, 'id': exp.id})
-    WorkExperienceFormSet = formset_factory(WorkExperienceForm, extra=4)
+    WorkExperienceFormSet = formset_factory(WorkExperienceForm, extra=5)
     objs.append({'cv': cv})
 
     
     if request.method == 'POST':
         experience_formset = WorkExperienceFormSet(request.POST)
         for form in experience_formset:
-            
             print('Loop formset')
             if form.is_valid():
                 
-                form.save()
-            section = sections[sections.index('work_experience') + 1]
-            return HttpResponseRedirect(reverse('cv:%s' % section, kwargs={'pk':pk}))       
+                form.save(cv)
+        section = sections[sections.index('work_experience') + 1]
+        return HttpResponseRedirect(reverse('cv:%s' % section, kwargs={'pk':pk}))       
     
     else:
         experience_formset = WorkExperienceFormSet(initial=objs)
