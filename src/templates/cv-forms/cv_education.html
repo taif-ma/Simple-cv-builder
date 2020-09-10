@@ -187,7 +187,7 @@ input#id_resume_template_4[type=radio]:checked+label {
 
 
    
-    <form action="" method="POST">{% csrf_token %}
+    
     
 <div class="container cv" style="max-width:100%;">
     <div class="row cv">
@@ -200,8 +200,7 @@ input#id_resume_template_4[type=radio]:checked+label {
         </div>
         <div class="col-2 sections-cv" style="background:#818192;">
         <div class="cv-sections">                     
-        <form action="" method="POST">{% csrf_token %}
-        {{ wizard.management_form }}
+       
         <div class="cv-sections-buttons">
             <ul>
                 <!-- <li><button name="wizard_goto_step" type="submit" value="resumes" class="active"><i class="fa fa-info-circle" aria-hidden="true"></i> Resume</button></li> -->
@@ -237,15 +236,18 @@ input#id_resume_template_4[type=radio]:checked+label {
                 
             </ul>
         </div>
-    </form>
+    
         </div>
         
         </div>
         <div class="col-9 data" style="display:flex;">
              <div class="data-cv">
              <h2>Education</h2>
-             {{education_formset.management_form}}
-                {%for form in education_formset%}
+             <form action="" method="POST">{% csrf_token %}
+             
+                {{education_formset.management_form}}
+                {% for form in education_formset %}
+
                 <div class="cv-form-row form-duplicate">
                     <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">      
                         <div class="card">
@@ -253,7 +255,9 @@ input#id_resume_template_4[type=radio]:checked+label {
                             <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapse{{forloop.counter}}"
                                 aria-expanded="false" aria-controls="collapse{{forloop.counter}}">
                                 <h5 class="mb-0">
-                                Education 
+                              <!--   {% if form.school.value and form.degree.value %}
+                                {{form.school.value}} - {{form.degree.value}}{%else%}  Education {{forloop.counter}}{% endif%} -->
+                                Education
                                  <i class="fa fa-angle-down rotate-icon"></i>
                                 </h5>
                             </a>
@@ -275,7 +279,7 @@ input#id_resume_template_4[type=radio]:checked+label {
                 <button type="submit" class="button-next">Next</button>
             </div>
             <div class="preview-cv">
-                <iframe data-enlargeable src="cv/cv-preview/{{cv.id}}" class="cv-iframe" style="border:0 #fffff none;" scrolling="no" frameborder="1" marginhright="0px" marginwidth="0px" height="100%" width="100%" allowfullscreen></iframe>
+                <iframe data-enlargeable src="/dashboard/cv/cv-preview/{{cv.id}}" class="cv-iframe" style="border:0 #fffff none;" scrolling="no" frameborder="1" marginhright="0px" marginwidth="0px" height="100%" width="100%" allowfullscreen></iframe>
                 <span >Preview</span>
             </div>
             

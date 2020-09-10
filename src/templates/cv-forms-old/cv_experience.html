@@ -244,18 +244,15 @@ input#id_resume_template_4[type=radio]:checked+label {
             <div class="data-cv">
             <h2>Experience</h2>
             <form action="" method="POST">{% csrf_token %}
-
-                {{experience_formset.management_form}}
-            
-                {% for form in experience_formset %}
+            {{experience_formset.management_form}}
+                {%for form in experience_formset%}
                 <div class="cv-form-row cv-form-duplicate">
                     
-                    {{form.as_p}}
+                                {{form.as_p}}
                             
                 </div>
                  
                 {% endfor %}
-            
                 <button type="submit" class="button-next">Next</button>
             </div>
            

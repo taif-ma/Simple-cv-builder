@@ -1,0 +1,341 @@
+{% extends 'index.html' %}
+{% load i18n %}
+{% load static %}
+{% block style%}
+<style>
+
+ul#id_sections li {
+    list-style: none;
+    width: calc(20% - 20px);
+    height: 100px;
+    margin: 5px;
+    float: left;
+    
+}
+ul#id_sections {
+    width: 100%;
+    float:left;
+}
+ul#id_sections li label{
+
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    border-radius: 7px;
+    background:#8282927a;
+}
+.cv-form-row p {
+    width: 100%;
+    float: left;
+}
+.form-row p input {
+    width: 70%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #f7ecf0;
+}
+.form-row p  {
+    width: 50%;
+    margin: 50px auto;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.form-row p label  {
+    display:none;
+}
+.tooltip {
+    padding: 20px;
+    opacity: 1;
+}
+input[type=radio] {
+        display: none;
+    }
+
+label[for="id_sections_0"]:before {
+    
+    content: "\f0b1";
+    font-family: FontAwesome;
+    font-size: 50px;
+    margin: 20px 20px;
+    position: absolute; 
+}
+
+
+label[for="id_sections_0"]:before {
+    
+    content: "\f0b1";
+    font-family: FontAwesome;
+    font-size: 50px;
+    margin: 20px 20px;
+    position: absolute; 
+        color: #818192;
+}
+label[for="id_sections_0"]:hover:before {
+    color: #cc7b8e;
+}
+
+label[for="id_sections_1"]:before  {
+    content: "\f19d";
+    font-family: FontAwesome;
+    font-size: 50px;
+    margin: 20px 10px;
+    position: absolute; 
+        color: #818192;
+}
+label[for="id_sections_1"]:hover:before {
+    color: #cc7b8e;
+}
+label[for="id_sections_1"]:checked+label {
+    border: deeppink solid 4px;   
+}
+input#id_sections_1[type=checkbox]:checked+label {
+    border: deeppink solid 4px;
+}
+
+label[for="id_sections_2"]:before  {
+content: "\f0a3";
+    font-family: FontAwesome;
+    font-size: 50px;
+    margin: 20px 30px;
+    position: absolute;     
+        color: #818192;
+}
+label[for="id_sections_2"]:hover:before {
+    color: #cc7b8e;
+}
+
+label[for="id_sections_3"]:before  {
+content: "\f212";
+    font-family: FontAwesome;
+    font-size: 50px;
+    margin: 20px 5px;
+    position: absolute;         
+    color: #818192;
+}
+label[for="id_sections_3"]:hover:before {
+    color: #cc7b8e;
+}
+label[for="id_sections_4"]:before {
+content: "\f0ae";
+    font-family: FontAwesome;
+    font-size: 50px;
+    margin: 20px 10px;
+    position: absolute;
+        color: #818192;
+}
+label[for="id_sections_4"]:hover:before {
+    color: #cc7b8e;
+}
+label[for="id_sections_5"]:before  {
+content: "\f1ea";
+    font-family: FontAwesome;
+    font-size: 50px;
+    margin: 20px 20px;
+    position: absolute;
+        color: #818192;
+}
+label[for="id_sections_5"]:hover:before {
+    color: #cc7b8e;
+}
+label[for="id_sections_6"]:before  {
+content: "\f005";
+    font-family: FontAwesome;
+    font-size: 50px;
+    margin: 20px 0px;
+    position: absolute;
+        color: #818192;
+}
+label[for="id_sections_6"]:hover:before {
+    color: #cc7b8e;
+}
+label[for="id_sections_7"]:before  {
+content: "\f1ab";
+    font-family: FontAwesome;
+    font-size: 50px;
+    margin: 20px 20px;
+    position: absolute;
+        color: #818192;
+}
+label[for="id_sections_7"]:hover:before {
+    color: #cc7b8e;
+}
+label[for="id_sections_8"]:before  {
+content: "\f1fc";
+    font-family: FontAwesome;
+    font-size: 50px;
+    margin: 20px 10px;
+    position: absolute;
+        color: #818192;
+}
+label[for="id_sections_8"]:hover:before {
+    color: #cc7b8e;
+}
+label[for="id_sections_9"]:before  {
+content: "\f022";
+    font-family: FontAwesome;
+    font-size: 50px;
+    margin: 20px 30px;
+    position: absolute;
+        color: #818192;
+}
+label[for="id_sections_9"]:hover:before {
+    color: #cc7b8e;
+}
+label[for="id_sections_10"]:before  {
+content: "\f0b1";
+    font-family: FontAwesome;
+    font-size: 50px;
+    margin: 20px -20px;
+    position: absolute; 
+}
+label[for="id_resumes-template_3"]  {
+    background-image: url("{% static 'resumes/images/tokyo-resume-small.jpg' %}");
+    border: lightslategray solid 1px;
+    height: 253px;
+    width: 223px;
+    display: inline-block;
+    margin: 1.5em;
+}
+
+label[for="id_resumes-template_4"]  {
+    background-image: url("{% static 'resumes/images/rome-resume-small.jpg' %}");
+    border: lightslategray solid 1px;
+    height: 253px;
+    width: 223px;
+    display: inline-block;
+    margin: 1.5em;
+}
+
+label[for="id_resumes-template_5"] {
+    background-image: url("{% static 'resumes/images/sf-resume-small.jpg' %}");
+    border: lightslategray solid 1px;
+    height: 253px;
+    width: 223px;
+    display: inline-block;
+    margin: 1.5em;
+}
+
+label[for="id_resumes-template_1"]:checked+label {
+    border: deeppink solid 4px;
+    height: 253px;
+    width: 223px;
+    display: inline-block;
+    margin: 1.5em;
+}
+
+input#id_resume_template_1[type=radio]:checked+label {
+    border: deeppink solid 4px;
+    height: 253px;
+    width: 223px;
+    display: inline-block;
+    margin: 1.5em;
+}
+
+input#id_resume_template_2[type=radio]:checked+label {
+    border: deeppink solid 4px;
+    height: 253px;
+    width: 223px;
+    display: inline-block;
+    margin: 1.5em;
+}
+
+input#id_resume_template_3[type=radio]:checked+label {
+    border: deeppink solid 4px;
+    height: 253px;
+    width: 223px;
+    display: inline-block;
+    margin: 1.5em;
+}
+
+input#id_resume_template_4[type=radio]:checked+label {
+    border: deeppink solid 4px;
+    height: 253px;
+    width: 223px;
+    display: inline-block;
+    margin: 1.5em;
+}
+</style>
+
+
+{% endblock %}
+{% block title %}<title>Resume Name</title>{% endblock %}
+{% block subheader %}
+    <!-- <form action="" method="POST">{% csrf_token %}
+        {{ wizard.management_form }}
+        <div class="sub-header">
+            <ul>
+                <li><button name="wizard_goto_step" type="submit" value="resumes" class="active"><i class="fa fa-info-circle" aria-hidden="true"></i> Resume</button></li>
+                <li><button name="wizard_goto_step" type="submit" value="work_experience"> <i class="fa fa-briefcase" aria-hidden="true"></i> Experience</button></li>                
+                <li><button name="wizard_goto_step" type="submit" value="education"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Education</button></li>
+                <li><button name="wizard_goto_step" type="submit" value="certifications"><i class="fa fa-certificate" aria-hidden="true"></i> Certifications</button></li>
+                <li><button name="wizard_goto_step" type="submit" value="projects"><i class="fa fa-tasks" aria-hidden="true"></i> Projects</button></li>
+                <li><button name="wizard_goto_step" type="submit" value="skills"><i class="fa fa-star" aria-hidden="true"></i>  Skills</button></li>
+                <li><button name="wizard_goto_step" type="submit" value="languages"><i class="fa fa-language" aria-hidden="true"></i> Languages</button></li>
+                <li><button name="success"><i class="fa fa-check" aria-hidden="true"></i> Done</button></li>
+                
+            </ul>
+        </div>
+    </form> -->
+
+   
+{% endblock %}
+
+{% block content %}
+
+ 
+    <form action="" class="form-labels-on-top" method="POST">{% csrf_token %}
+    
+        <div class="form-title-row">
+            <h1>Create New CV</h1>
+            <div class="tooltip">
+                <i class="fa fa-question-circle"></i>
+                <span class="tool-tip-text">
+                    Please choose a unique name for this CV.
+                    This will help you stay organized. Especially if you are creating more than one CV.
+                </span>
+            </div>
+        </div>
+        
+                
+        
+            <div class="cv-form-row">
+             <label>Name: </label> {{form.name}}
+                </div>
+                <!-- <div><label>Name: </label>{{form.template}}</div> -->
+                
+                <div class="cv-templates">
+                <h2>Cv Templates</h2>
+                <span>Choose a template for your CV</span>
+                
+
+                {{form.template}}
+
+                {%for template in form.template%}
+            
+                
+            
+                <!-- <option value="{{template.label}}">{{template}}</option> -->
+            
+            
+            <!-- <input type="radio" name='resume_template' id="id_resume_template_0" value="jakarta" /><label for="id_resume_template_0"></label>
+            <input type="radio" name='resume_template' id="id_resume_template_1" value="new_york" /><label for="id_resume_template_1"></label>
+            <input type="radio" name='resume_template' id="id_resume_template_2" value="tokyo"/><label for="id_resume_template_2"></label>
+            <input type="radio" name='resume_template' id="id_resume_template_3" value="rome" /><label for="id_resume_template_3"></label>
+            <input type="radio" name='resume_template' id="id_resume_template_4" value="san_francisco" /><label for="id_resume_template_4"></label>
+             -->
+            
+            
+                {% endfor %}
+                </div>
+
+
+                <div class="cv-sections">
+                <h2>Cv Sections</h2>
+                <span>Choose sections that you want to add to your CV</span>
+                {{form.sections}}</div>
+    <div class="form-row">
+       
+        <button type="submit" class="form-button">Next</button>
+    </div>
+    </form>
+{% endblock %}

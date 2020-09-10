@@ -180,7 +180,7 @@ input#id_resume_template_4[type=radio]:checked+label {
 
 
 {% endblock %}
-{% block title %}<title>Resume Name</title>{% endblock %}
+{% block title %}<title>Education</title>{% endblock %}
 
 {% block content %}
 
@@ -200,15 +200,15 @@ input#id_resume_template_4[type=radio]:checked+label {
         </div>
         <div class="col-2 sections-cv" style="background:#818192;">
         <div class="cv-sections">                     
-        
+       
         <div class="cv-sections-buttons">
             <ul>
                 <!-- <li><button name="wizard_goto_step" type="submit" value="resumes" class="active"><i class="fa fa-info-circle" aria-hidden="true"></i> Resume</button></li> -->
                 {% if 'work_experience' in cv.sections %}
-                <li><button name="wizard_goto_step" type="submit" value="work_experience" class="active"> <i class="fa fa-briefcase" aria-hidden="true"></i> Experience</button></li>                
+                <li><button name="wizard_goto_step" type="submit" value="work_experience"> <i class="fa fa-briefcase" aria-hidden="true"></i> Experience</button></li>                
                 {% endif %}
                 {% if 'education' in cv.sections %}
-                <li><button name="wizard_goto_step" type="submit" value="education"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Education</button></li>
+                <li><button name="wizard_goto_step" type="submit" value="education" class="active"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Education</button></li>
                 {% endif %}
                 {% if 'certifications' in cv.sections %}
                 <li><button name="wizard_goto_step" type="submit" value="certifications"><i class="fa fa-certificate" aria-hidden="true"></i> Certifications</button></li>
@@ -241,32 +241,34 @@ input#id_resume_template_4[type=radio]:checked+label {
         
         </div>
         <div class="col-9 data" style="display:flex;">
-            <div class="data-cv">
-            <h2>Experience</h2>
-            <form action="" method="POST">{% csrf_token %}
-
-                {{experience_formset.management_form}}
-            
-                {% for form in experience_formset %}
-                <div class="cv-form-row cv-form-duplicate">
-                    
-                    {{form.as_p}}
-                            
+             <div class="data-cv">
+             
+             <form action="" method="POST">{% csrf_token %}
+             
+                
+                <div class="cv-form-row form-duplicate">
+                    <div class="congrats">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    <h4>Your Cv Has Been Successfuly Created!</h4>
+                </div>
+                <div class="done-page-download">
+                    <div class="done-download-button pdf"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download PDF</div>
+                    <div class="done-download-button docx"><i class="fa fa-file-word-o" aria-hidden="true"></i> Download DOCX</div>
+                    <div class="done-download-button google"><i class="fa fa-google" aria-hidden="true"></i>Save To Google Drive</div>
+                    <div class="done-download-button drop"><i class="fa fa-dropbox" aria-hidden="true"></i>Save To DropBox</div>
+                    <div class="done-download-button email"><i class="fa fa-envelope" aria-hidden="true"></i>Send To Email</div>
+                </div>
                 </div>
                  
-                {% endfor %}
-            
-                <button type="submit" class="button-next">Next</button>
+                
+                <button type="submit" class="button-next">My Cv's</button>
             </div>
-           
             <div class="preview-cv">
-                <iframe src="/dashboard/cv/cv-preview/{{cv.id}}" class="cv-iframe" style="border:0 #fffff none;" scrolling="no" frameborder="1" marginhright="0px" marginwidth="0px" height="100%" width="100%" allowfullscreen></iframe>
+                <iframe data-enlargeable src="/dashboard/cv/cv-preview/{{cv.id}}" class="cv-iframe" style="border:0 #fffff none;" scrolling="no" frameborder="1" marginhright="0px" marginwidth="0px" height="100%" width="100%" allowfullscreen></iframe>
+                <span >Preview</span>
             </div>
-            <!-- <div class="preview-cv">
-                <div class="display-cv">
-                <iframe src="/dashboard/cv/cv-preview/{{cv.id}}" class="cv-iframe-preview"></iframe></div>
-            </div> -->
-           
+            
+          
         </div>
         
     </div>
@@ -275,17 +277,5 @@ input#id_resume_template_4[type=radio]:checked+label {
     </form>
 {% endblock %}
 {% block script %}
-
-    <script type="text/javascript">
-        
-        $(function() {
-            $('.cv-form-duplicate').formset({ 
-                prefix: 'work_experience',
-                added: function() {
-                tinymceInit();
-         }
-         })
-        })
-    </script>
-   
+    
 {% endblock %}
