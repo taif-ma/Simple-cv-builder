@@ -245,6 +245,8 @@ input#id_resume_template_4[type=radio]:checked+label {
             <h2>Experience</h2>
             <form action="" method="POST">{% csrf_token %}
 
+                <input name="cv_id" value="{{ cv.id }}" />
+
                 {{experience_formset.management_form}}
             
                 {% for form in experience_formset %}
