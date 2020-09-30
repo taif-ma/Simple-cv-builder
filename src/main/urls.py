@@ -5,6 +5,10 @@ from users import views as user_views
 
 #from .views import resume_template_choice
 
+from main.pdf_views import download_pdf
+
+from main.docx_views import  download_docx
+
 urlpatterns = [
     
 
@@ -50,4 +54,11 @@ urlpatterns = [
     #path('payment/notification/', user_views.payment_notification, name='payment-notif'),
     path('cv/<int:pk>/choose/', views.choose, name='choose'),
     path('cv/<int:pk>/view-cv/', views.choose, name='view-cv'),
+
+
+    path('download/pdf/<int:pk>', download_pdf, name='download_pdf'),
+    path('download/docx/<int:pk>', download_docx, name='download_docx'),
+
+
+    
 ]

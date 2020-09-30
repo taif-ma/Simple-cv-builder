@@ -252,8 +252,13 @@ input#id_resume_template_4[type=radio]:checked+label {
                     <h4>Your Cv Has Been Successfuly Created!</h4>
                 </div>
                 <div class="done-page-download">
-                    <div class="done-download-button pdf"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download PDF</div>
-                    <div class="done-download-button docx"><i class="fa fa-file-word-o" aria-hidden="true"></i> Download DOCX</div>
+                    <div class="done-download-button pdf"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> 
+                    <a href="{% url 'cv:download_pdf' pk=cv.pk %}">
+                        Download PDF
+                    </a> </div>
+                    <div class="done-download-button docx"><i class="fa fa-file-word-o" aria-hidden="true"></i>                     <a href="{% url 'cv:download_docx' pk=cv.pk %}">
+                        Download DOC
+                    </a> </div>
                     <div class="done-download-button google"><i class="fa fa-google" aria-hidden="true"></i>Save To Google Drive</div>
                     <div class="done-download-button drop"><i class="fa fa-dropbox" aria-hidden="true"></i>Save To DropBox</div>
                     <div class="done-download-button email"><i class="fa fa-envelope" aria-hidden="true"></i>Send To Email</div>
